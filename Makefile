@@ -167,6 +167,9 @@ omap4430sdp_config :    unconfig
 		  echo "MPU at 600MHz revision.." ; \
 		}
 
+omap4430panda_config :    unconfig
+	@./mkconfig $(@:_config=) arm omap4 omap4430panda
+
 omap3430labrador_config :    unconfig
 	@./mkconfig $(@:_config=) arm omap3 omap3430labrador
 
