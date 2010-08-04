@@ -53,7 +53,7 @@ export	ARCH CPU BOARD VENDOR
 include $(TOPDIR)/config.mk
 
 ifndef CROSS_COMPILE
-CROSS_COMPILE = arm-none-linux-gnueabi-
+CROSS_COMPILE = arm-angstrom-linux-gnueabi-
 #CROSS_COMPILE = arm-linux-
 export	CROSS_COMPILE
 endif
@@ -153,7 +153,7 @@ omap2430sdp_config :    unconfig
 omap3430sdp_config :    unconfig
 	@./mkconfig $(@:_config=) arm omap3 omap3430sdp
 
-omap4430sdp_MPU_600MHz_config \
+omap4430sdp_600_config \
 omap4430sdp_config :    unconfig
 	@./mkconfig $(@:_config=) arm omap4 omap4430sdp
 	echo "/* Generarated file. Do not edit */" >./include/config.h
@@ -163,6 +163,20 @@ omap4430sdp_config :    unconfig
 		  echo "MPU at 1GHz revision.." ; \
 		}
 	@[ -z "$(findstring _MPU_600MHz,$@)" ] || \
+		{ echo "#define CONFIG_MPU_600 1"	>>./include/config.h ; \
+		  echo "MPU at 600MHz revision.." ; \
+		}
+
+omap4430panda_600MHZ_config \
+omap4430panda_config :    unconfig
+	@./mkconfig $(@:_config=) arm omap4 omap4430panda
+	echo "/* Generarated file. Do not edit */" >./include/config.h
+	echo "#include <configs/omap4430panda.h>" >>./include/config.h
+	@[ -n "$(findstring _600MHZ,$@)" ] || \
+		{ echo "#define CONFIG_MPU_1000 1"	>>./include/config.h ; \
+		  echo "MPU at 1GHz revision.." ; \
+		}
+	@[ -z "$(findstring _600MHZ,$@)" ] || \
 		{ echo "#define CONFIG_MPU_600 1"	>>./include/config.h ; \
 		  echo "MPU at 600MHz revision.." ; \
 		}
