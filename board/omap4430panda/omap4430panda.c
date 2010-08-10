@@ -716,7 +716,7 @@ int dram_init(void)
 	MV(CP(GPMC_A19) , ( PTU | IEN | OFF_EN | OFF_PD | OFF_IN | M1))  /* kpd_row7 */ \
 	MV(CP(GPMC_A20) , ( IEN | M3))  /* gpio_44 */ \
 	MV(CP(GPMC_A21) , ( M3))  /* gpio_45 */ \
-	MV(CP(GPMC_A22) , ( OFF_EN | OFF_PD | OFF_IN | M1))  /* kpd_col6 */ \
+	MV(CP(GPMC_A22) , ( M3))  /* gpio_46 */ \
 	MV(CP(GPMC_A23) , ( OFF_EN | OFF_PD | OFF_IN | M1))  /* kpd_col7 */ \
 	MV(CP(GPMC_A24) , ( PTD | M3))  /* gpio_48 */ \
 	MV(CP(GPMC_A25) , ( PTD | M3))  /* gpio_49 */ \
